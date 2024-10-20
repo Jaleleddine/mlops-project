@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.datasets import load_breast_cancer  # Importing the dataset directly
 
+
 # Load dataset
 data = load_breast_cancer()  # Load the dataset
 X = pd.DataFrame(data.data, columns=data.feature_names)  # Convert to DataFrame
