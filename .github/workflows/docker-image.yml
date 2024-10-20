@@ -53,5 +53,5 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f https://github.com/Jaleleddine/mlops-project/blob/main/.github/workflows/deployment.yaml
+          kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
