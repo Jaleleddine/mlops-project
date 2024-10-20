@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: mlops-container
-        image: yourusername/mlops-project
+        image: hajlaoui/mlops-project
         ports:
         - containerPort: 80
