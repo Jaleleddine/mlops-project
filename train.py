@@ -25,3 +25,7 @@ print(f'Model Accuracy: {accuracy}')
 # Save model
 import joblib
 joblib.dump(model, 'model.joblib')
+
+
+
+
