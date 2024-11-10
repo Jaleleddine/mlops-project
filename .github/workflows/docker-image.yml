@@ -51,7 +51,21 @@ jobs:
         with:
           version: 'latest'
 
-      - name: Deploy to Kubernetes
+      #- name: Deploy to Kubernetes
+      #  run: |
+      #    kubectl apply -f https://github.com/Jaleleddine/mlops-project/blob/main/deployment.yaml
+      #    kubectl apply -f service.yaml
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create kubeconfig
+        run: |
+          mkdir ${HOME}.kube
+          echo ${{ secrets.KUBE_CONFIG }} | base 64 --decode > ${HOME}.kube/config
+          cat ${HOME}.kube/config
+      - name: Use context 
+        run: kubectl config use-context octobay-api
+      - name: Deploy to K8S
         run: |
           kubectl apply -f https://github.com/Jaleleddine/mlops-project/blob/main/deployment.yaml
           kubectl apply -f service.yaml
