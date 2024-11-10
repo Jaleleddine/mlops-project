@@ -59,11 +59,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check if base64 is available
-        run: which base64 || echo "base64 command is missing"
-      - name: Install base64 if missing
-        if: failure() # Install base64 only if the previous step fails
-        run: sudo apt-get update && sudo apt-get install -y coreutils
+      - name: Check runner environment and base64
+        run: |
+          uname -a
+          which base64 || echo "base64 command is missing"
+          base64 --version || echo "base64 command is unavailable"
+
+      - name: Install coreutils for base64
+        if: failure()  # Only installs if base64 check fails
+        run: |
+          sudo apt-get update && sudo apt-get install -y coreutils
+          
       - name: Create kubeconfig
         run: |
           mkdir ${HOME}/.kube
